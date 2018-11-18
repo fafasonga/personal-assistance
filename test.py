@@ -1,8 +1,21 @@
 import os
 from gtts import gTTS
+import pandas as pd
 from langdetect import detect
+import speech_recognition as sr
 
+r = sr.Recognizer()
+with sr.Microphone() as source:
+    print("Say something!")
+    audio = r.listen(source)
 
+try:
+    audio_text = r.recognize_google(audio)
+    print("You said :{}\n".format(audio_text))
+    audio_text.to_csv('audio2text.csv')
+
+except:
+    pass
 
 
 
